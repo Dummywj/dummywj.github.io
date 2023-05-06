@@ -4,46 +4,6 @@
   
     
     <entry>
-      <title>test</title>
-      <link href="/2023/05/07/test/"/>
-      <url>/2023/05/07/test/</url>
-      
-        <content type="html"><![CDATA[<p>nihao shijie </p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>paper01</title>
-      <link href="/2023/05/06/paper01/"/>
-      <url>/2023/05/06/paper01/</url>
-      
-        <content type="html"><![CDATA[<h4 id="Homework"><a href="#Homework" class="headerlink" title="Homework"></a>Homework</h4><ol><li><p>理论力学</p></li><li><p>数字逻辑</p></li><li><p>电磁场与波</p></li><li><p>随机信号与系统</p><p>第五章作业</p></li><li><p>基础物理实验</p><p>实验报告一份+预习报告</p></li><li><p>数字电路实验</p><p>实验报告一份</p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 算法 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 线段树 </tag>
-            
-            <tag> 树状数组 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Hello World</title>
       <link href="/2023/05/06/hello-world/"/>
       <url>/2023/05/06/hello-world/</url>
