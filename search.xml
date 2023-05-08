@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>愿望清单</title>
+      <link href="/2023/05/08/%E6%84%BF%E6%9C%9B%E6%B8%85%E5%8D%95/"/>
+      <url>/2023/05/08/%E6%84%BF%E6%9C%9B%E6%B8%85%E5%8D%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="学习方向"><a href="#学习方向" class="headerlink" title="学习方向"></a>学习方向</h3><ul><li><input disabled type="checkbox"> 学习 Qt 基础知识，并能够在之后做项目的过程中写 Qt 进行辅助开发。</li><li><input disabled type="checkbox"> 学会移植 FreeRTOS，并能了解 FreeRTOS 内核。</li><li><input disabled type="checkbox"> 嵌入式 Linux 基础内容（韦东山免费教程）。</li><li><input disabled type="checkbox"> 算法进阶：数据结构，图论，动态规划，数学。</li><li><input disabled type="checkbox"> 把《自动控制原理》学习完。</li></ul><h3 id="愿望清单"><a href="#愿望清单" class="headerlink" title="愿望清单"></a>愿望清单</h3><ul><li><input disabled type="checkbox"> 制作一个 FOC 驱动器。</li><li><input disabled type="checkbox"> 制作一个简易的 CPU。</li><li><input disabled type="checkbox"> 制作一个迷你的 Linux 小电脑。</li><li><input disabled type="checkbox"> 吉他学会弹奏《天空之城》。</li><li><input disabled type="checkbox"> 画一幅香风智乃的画。</li></ul><h3 id="博客补完计划"><a href="#博客补完计划" class="headerlink" title="博客补完计划"></a>博客补完计划</h3><ul><li><input disabled type="checkbox"> 加入 <strong>关于</strong> 部分。</li><li><input disabled type="checkbox"> 在 <strong>摸鱼</strong> 中加一些小控件：<ul><li><input disabled type="checkbox"> 一些小游戏</li><li><input disabled type="checkbox"> CSS 控件（金属材质的标签，太阳系等）</li></ul></li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Qt学习笔记</title>
       <link href="/2023/05/07/Qt%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>/2023/05/07/Qt%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
