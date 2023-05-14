@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Linux玩转计划</title>
+      <link href="/2023/05/15/Linux%E7%8E%A9%E8%BD%AC%E8%AE%A1%E5%88%92/"/>
+      <url>/2023/05/15/Linux%E7%8E%A9%E8%BD%AC%E8%AE%A1%E5%88%92/</url>
+      
+        <content type="html"><![CDATA[<p>学习了 Linux 的一堆命令行，但没有什么练习的场景，打算给自己挖坑并不断填坑，逐渐将   Linux 的内容能玩转起来。在挖坑填坑的同时做一些记录。</p><h3 id="2023-x2F-5-x2F-15"><a href="#2023-x2F-5-x2F-15" class="headerlink" title="2023&#x2F;5&#x2F;15"></a>2023&#x2F;5&#x2F;15</h3><ul><li>下载 vscode，配置好 C&#x2F;C++ 环境。</li><li>下载 Chrome，QQ，Pycharm </li><li>通关一款 vim 小游戏</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux学习笔记</title>
       <link href="/2023/05/13/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>/2023/05/13/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
