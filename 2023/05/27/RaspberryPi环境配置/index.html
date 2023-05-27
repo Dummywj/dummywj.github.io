@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RaspberryPi环境配置 | cherry's blog</title><meta name="author" content="cherry"><meta name="copyright" content="cherry"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="因最近项目要使用树莓派，因此掏出了我吃灰的树莓派 4B，需要配置一下 OpenCV 环境和串口。因为是 Linux 萌新，配置环境踩了不少坑。既然好不容易配置好，赶紧写篇文章记录一下，以免遗忘。 1. 格式化 SD 卡SD Memory Card Formatter 烧录文件前要先格式化 SD 卡。 2. 树莓派系统烧录使用官方提供的树莓派镜像烧录器即可。 需要注意的一些坑：  在选择系统的时候，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RaspberryPi环境配置">
+<meta property="og:url" content="http://dummywj.github.io/2023/05/27/RaspberryPi%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="cherry&#39;s blog">
+<meta property="og:description" content="因最近项目要使用树莓派，因此掏出了我吃灰的树莓派 4B，需要配置一下 OpenCV 环境和串口。因为是 Linux 萌新，配置环境踩了不少坑。既然好不容易配置好，赶紧写篇文章记录一下，以免遗忘。 1. 格式化 SD 卡SD Memory Card Formatter 烧录文件前要先格式化 SD 卡。 2. 树莓派系统烧录使用官方提供的树莓派镜像烧录器即可。 需要注意的一些坑：  在选择系统的时候，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dummywj.github.io/img/xfzn.png">
+<meta property="article:published_time" content="2023-05-27T07:27:49.000Z">
+<meta property="article:modified_time" content="2023-05-27T07:28:30.845Z">
+<meta property="article:author" content="cherry">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://dummywj.github.io/img/xfzn.png"><link rel="shortcut icon" href="/img/logo.jpeg"><link rel="canonical" href="http://dummywj.github.io/2023/05/27/RaspberryPi%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RaspberryPi环境配置',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-27 15:28:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/transpancy.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/xfzn.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/qjf.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="cherry's blog"><span class="site-name">cherry's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RaspberryPi环境配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-27T07:27:49.000Z" title="发表于 2023-05-27 15:27:49">2023-05-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-27T07:28:30.845Z" title="更新于 2023-05-27 15:28:30">2023-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RaspberryPi环境配置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>因最近项目要使用树莓派，因此掏出了我吃灰的树莓派 4B，需要配置一下 OpenCV 环境和串口。因为是 Linux 萌新，配置环境踩了不少坑。既然好不容易配置好，赶紧写篇文章记录一下，以免遗忘。</p>
+<h3 id="1-格式化-SD-卡"><a href="#1-格式化-SD-卡" class="headerlink" title="1. 格式化 SD 卡"></a>1. 格式化 SD 卡</h3><p><a target="_blank" rel="noopener" href="https://www.sdcard.org/downloads/formatter/">SD Memory Card Formatter</a></p>
+<p>烧录文件前要先格式化 SD 卡。</p>
+<h3 id="2-树莓派系统烧录"><a href="#2-树莓派系统烧录" class="headerlink" title="2. 树莓派系统烧录"></a>2. 树莓派系统烧录</h3><p>使用官方提供的树莓派镜像烧录器即可。</p>
+<p>需要注意的一些坑：</p>
+<ul>
+<li>在选择系统的时候，<strong>谨慎选择最新版本</strong>，因为资料少，坑多，对小白不太友好。</li>
+<li>强烈推荐官方的 Raspberry Pi OS ，一开始本人想装 Ubuntu 桌面版，卡的没法用，但是 Raspberry Pi OS 桌面版体验就很好。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/raspios_oldstable_armhf/images/raspios_oldstable_armhf-2021-12-02/2021-12-02-raspios-buster-armhf.zip">可以考虑的一个版本</a></p>
+<p>下载好文件后，可以在烧录器选择本地文件。</p>
+<h3 id="3-csi-摄像头"><a href="#3-csi-摄像头" class="headerlink" title="3. csi 摄像头"></a>3. csi 摄像头</h3><h4 id="3-1-新版本配置"><a href="#3-1-新版本配置" class="headerlink" title="3.1 新版本配置"></a>3.1 新版本配置</h4><p>配置摄像头接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+
+<p>选择 Interfacing Options -&gt; Camera，配置好后系统会提示是否重启，选择重启。</p>
+<p>查看当前摄像头是否可用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vcgencmd get_camera</span><br></pre></td></tr></table></figure>
+
+<p><code>raspistill</code> 指令已经被舍弃了，有关摄像头使用 <code>libcamera</code> 指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 打开摄像头几秒</span><br><span class="line">libcamera-hello</span><br><span class="line"># 拍一张照片</span><br><span class="line">libcamera-jpeg -o test.jpg</span><br></pre></td></tr></table></figure>
+
+<p><strong>摄像头识别不到的问题</strong></p>
+<p>执行上述命令时，报错 no cameras available。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_51245887/article/details/124692953?app_version=5.15.5&csdn_share_tail=%7B%22type%22:%22blog%22,%22rType%22:%22article%22,%22rId%22:%22124692953%22,%22source%22:%22unlogin%22%7D&utm_source=app">解决办法</a></p>
+<p>但是我遇到个非常之离谱的问题，文章里说要注释掉 <code>camera_auto_detect=1</code> ，我反而加上这句话就好了（原本文件中是没有这条语句的）。</p>
+<h4 id="3-2-老版本配置"><a href="#3-2-老版本配置" class="headerlink" title="3.2 老版本配置"></a>3.2 老版本配置</h4><p>新版本的 bug 真的是非常的多，换了老版本（在 2. 里面给了链接）后，配置起来非常的快。</p>
+<p>首先要开启摄像头，可以使用命令行配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+
+<p>也可以在桌面的左上角点击树莓派图标，打开有一个偏好设置，在里面打开摄像头。</p>
+<p>设置好后重启 reboot。</p>
+<p><code>raspistill</code> 指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">raspistill -t 2000 -o image.jpg</span><br></pre></td></tr></table></figure>
+
+<p>延时 2s 后拍一张照片。</p>
+<h3 id="4-ssh"><a href="#4-ssh" class="headerlink" title="4. ssh"></a>4. ssh</h3><p>一般树莓派官方的 OS 已经配置好了，如果没有，就下载 ssh 服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ssh</span><br></pre></td></tr></table></figure>
+
+<p>开启 ssh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ssh start</span><br></pre></td></tr></table></figure>
+
+<p>设置开机自启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable ssh</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-vnc"><a href="#5-vnc" class="headerlink" title="5. vnc"></a>5. vnc</h3><p>vnc 是远程桌面，由于需要看摄像头，会很卡，就暂时不用。</p>
+<h3 id="6-OpenCV-Python"><a href="#6-OpenCV-Python" class="headerlink" title="6. OpenCV-Python"></a>6. OpenCV-Python</h3><p>这一步真的是大坑，也是我为什么推荐不要使用新版本的原因 QwQ，严格按照这篇文章来即可。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45911959/article/details/122709090">https://blog.csdn.net/weixin_45911959/article/details/122709090</a></p>
+<p>安装好 OpenCV 后，可以执行下面指令判断是否安装成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br><span class="line">&gt;&gt; import cv2</span><br><span class="line">&gt;&gt; cv2.__version__</span><br></pre></td></tr></table></figure>
+
+<p>如果返回当前版本，说明安装成功。</p>
+<p>在读取摄像头的第一步是打开一个摄像头，就会有下面一条语句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cap = cv2.VideoCapture(index)</span><br></pre></td></tr></table></figure>
+
+<p>index 是摄像头索引，那么在 Linux 下，摄像头索引如何找？</p>
+<p>查看 video 的设备号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /dev | grep video*</span><br></pre></td></tr></table></figure>
+
+<p>由于前面已经配置好了 csi 摄像头，因此会有一个 video0，因此该摄像头的索引就是 0。</p>
+<p>成功打开摄像头后，就开始尽情地图像处理吧。</p>
+<h3 id="7-UART"><a href="#7-UART" class="headerlink" title="7. UART"></a>7. UART</h3><p>树莓派引脚图：</p>
+<p><img src="/2023/05/27/RaspberryPi%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20230527005624452.png" alt="image-20230527005624452"></p>
+<p>配置串口时又有一个坑，树莓派 3B 和 4B 的串口配置是不一样的。</p>
+<p>树莓派 3B 的时候，一共有两个串口：</p>
+<ul>
+<li>硬件串口：&#x2F;dev&#x2F;ttyAMA0</li>
+<li>mini 串口：&#x2F;dev&#x2F;ttyS0</li>
+</ul>
+<p>而树莓派 4B 增加了四个硬件串口，就需要修改一些配置。需要注意的是，用户使用的串口千万不能和已经使用的 GPIO 口冲突。</p>
+<p>按照 <a target="_blank" rel="noopener" href="https://blog.csdn.net/AuroraSmith/article/details/126403497?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168511593916800227484599%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168511593916800227484599&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-1-126403497-null-null.142%5Ev88%5Econtrol,239%5Ev2%5Einsert_chatgpt&utm_term=%E6%A0%91%E8%8E%93%E6%B4%BE4b%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1&spm=1018.2226.3001.4187">这篇文章</a> 来配置即可。</p>
+<h3 id="8-系统备份"><a href="#8-系统备份" class="headerlink" title="8. 系统备份"></a>8. 系统备份</h3><p>如果好不容易配置好了各种环境，但是之后不小心干了什么东西把系统搞寄了，重来一次就会很崩溃。因此就需要做好系统备份。</p>
+<p>包括每次在修改系统有关的文件时，都最好备份一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp filename filename.backup</span><br></pre></td></tr></table></figure>
+
+<p>即复制并改名（在原文件名后面加个 backup 后缀表示备份）</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/nanhantianyi/rpi-backup/blob/master/back.sh">树莓派备份脚本</a></p>
+<p>插上 U 盘挂载到 &#x2F;media 下，然后运行脚本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo bash back.sh /media/raspberry-back.img</span><br></pre></td></tr></table></figure>
+
+<p>但是本人在树莓派插上 U 盘时，发现系统似乎自动把 U 盘挂载到 media 下了，但是无法通过脚本写入数据。又尝试先把系统备份到脚本所在文件下，然后把文件上传至 U 盘，由于文件太大不是很稳定很容易失败。最后还是用远程传输方式解决。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://Dummywj.github.io">cherry</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://dummywj.github.io/2023/05/27/RaspberryPi%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">http://dummywj.github.io/2023/05/27/RaspberryPi环境配置/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://Dummywj.github.io" target="_blank">cherry's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/xfzn.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/05/17/Soul/" title="Soul"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Soul</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/xfzn.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cherry</div><div class="author-info__description">A none-stack developer.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Dummywj" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:76240193@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://space.bilibili.com/305335864?spm_id_from=333.1007.0.0" target="_blank" title="BiliBili"><i class="fab fa-bilibili" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这个人很懒，什么作业都没写。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A0%BC%E5%BC%8F%E5%8C%96-SD-%E5%8D%A1"><span class="toc-text">1. 格式化 SD 卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A0%91%E8%8E%93%E6%B4%BE%E7%B3%BB%E7%BB%9F%E7%83%A7%E5%BD%95"><span class="toc-text">2. 树莓派系统烧录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-csi-%E6%91%84%E5%83%8F%E5%A4%B4"><span class="toc-text">3. csi 摄像头</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%96%B0%E7%89%88%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-text">3.1 新版本配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E8%80%81%E7%89%88%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-text">3.2 老版本配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ssh"><span class="toc-text">4. ssh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-vnc"><span class="toc-text">5. vnc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-OpenCV-Python"><span class="toc-text">6. OpenCV-Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-UART"><span class="toc-text">7. UART</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD"><span class="toc-text">8. 系统备份</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/img/qjf.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By cherry</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
